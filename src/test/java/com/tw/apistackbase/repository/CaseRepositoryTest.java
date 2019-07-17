@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -54,6 +55,10 @@ public class CaseRepositoryTest {
         Assert.assertEquals(expectedCase,actualCase);
     }
 
-    
+    @Test
+    public void should_return_null_when_delete_by_id(){
+        caseRepository.deleteById(1);
+        Assert.assertEquals(Optional.empty(),caseRepository.findById(1));
+    }
 
 }
