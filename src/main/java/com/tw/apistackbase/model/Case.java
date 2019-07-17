@@ -1,5 +1,7 @@
 package com.tw.apistackbase.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -10,6 +12,7 @@ public class Case implements Serializable{
     private int id;
 
     @Column(name = "caseName",nullable=false,length = 255)
+    @Length(min = 0, max = 255)
     private String caseName;
 
     @Column(name = "happenTime",nullable=false)
