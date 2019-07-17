@@ -5,6 +5,7 @@ import com.tw.apistackbase.model.Essential;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -38,7 +39,8 @@ public class EssentialRepositoryTest {
     @Test
     public void should_return_essential_by_essentialId(){
         Essential firstEssentia = essentialRepository.findById(1).get();
-        Assert.assertEquals("Essential{id=1, mainEssential='mainEssential1', secondaryEssential='secondaryEssential1'}"
+        System.out.println(firstEssentia.toString());
+        Assert.assertEquals("Essential{id=1, mainEssential='mainEssential1', secondaryEssential='secondaryEssential1', $case=null}"
                 ,firstEssentia.toString());
     }
     @Test
@@ -46,5 +48,14 @@ public class EssentialRepositoryTest {
         Assert.assertEquals(caseRepository.findById(essentialRepository.findById(4).get().get$case().getId()).get().toString(),
                 essentialRepository.findById(4).get().get$case().toString());
     }
+
+    @Test
+    public void should_return_cases_and_essential_when_caseId_is_essentialId(){
+        Assert.assertEquals("[Essential{id=4, mainEssential='mainEssential4', " +
+                        "secondaryEssential='secondaryEssential4', $case=Case{id=1, caseName='case4', " +
+                        "happenTime=4}}]",
+                essentialRepository.findAllBy$caseIsNotNull().toString());
+    }
+    
 
 }

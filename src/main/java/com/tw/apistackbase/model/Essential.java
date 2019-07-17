@@ -72,6 +72,7 @@ public class Essential implements Serializable {
                 "id=" + id +
                 ", mainEssential='" + mainEssential + '\'' +
                 ", secondaryEssential='" + secondaryEssential + '\'' +
+                ", $case=" + $case +
                 '}';
     }
 }
