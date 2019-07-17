@@ -56,6 +56,6 @@ public class EssentialRepositoryTest {
                         "happenTime=4}}]",
                 essentialRepository.findAllBy$caseIsNotNull().toString());
     }
-    
+
 
 }
