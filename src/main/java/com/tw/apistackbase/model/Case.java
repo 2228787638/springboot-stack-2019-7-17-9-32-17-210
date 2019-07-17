@@ -46,4 +46,13 @@ public class Case implements Serializable{
     public void setHappenTime(long happenTime) {
         this.happenTime = happenTime;
     }
+
+    @Override
+    public String toString() {
+        return "Case{" +
+                "id=" + id +
+                ", caseName='" + caseName + '\'' +
+                ", happenTime=" + happenTime +
+                '}';
+    }
 }

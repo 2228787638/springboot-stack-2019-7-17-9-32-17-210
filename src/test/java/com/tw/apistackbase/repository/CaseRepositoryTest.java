@@ -39,7 +39,8 @@ public class CaseRepositoryTest {
     @Test
     public void should_return_case_by_caseId(){
         Case firstCase = caseRepository.findById(1).get();
-        Assert.assertEquals("case1",firstCase.getCaseName());
+        System.out.println(firstCase.toString());
+        Assert.assertEquals("Case{id=1, caseName='case1', happenTime=1}",firstCase.toString());
     }
     @Test
     public void should_return_cases_order_by_happened_time(){
