@@ -2,6 +2,7 @@ package com.tw.apistackbase.repository;
 
 import com.sun.deploy.util.StringUtils;
 import com.tw.apistackbase.model.Case;
+import com.tw.apistackbase.model.Procuratorate;
 import net.sf.json.JSONArray;
 import org.junit.Assert;
 import org.junit.Before;
@@ -33,6 +34,8 @@ public class CaseRepositoryTest {
         caseList.add(new Case("case1",1));
         caseList.add(new Case("case2",2));
         caseList.add(new Case("case3",3));
+        caseList.add(new Case("case3",3));
+        caseList.add(new Case("case4",4, new Procuratorate("p1")));
         caseRepository.saveAll(caseList);
     }
 
@@ -61,5 +64,8 @@ public class CaseRepositoryTest {
         caseRepository.deleteById(1);
         Assert.assertEquals(Optional.empty(),caseRepository.findById(1));
     }
-
+    @Test
+    public void should_contain_procuratorate_when_request_case(){
+        Assertions.assertNull(caseRepository.findById(4).get().getProcuratorate());
+    }
 }

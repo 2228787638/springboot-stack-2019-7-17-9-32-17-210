@@ -18,9 +18,22 @@ public class Case implements Serializable{
     @Column(name = "happenTime",nullable=false)
     private long happenTime;
 
+    @OneToOne
+    private Essential essential;
+
+    @ManyToOne(fetch=FetchType.LAZY,targetEntity = Procuratorate.class)
+    @JoinColumn(name = "procuratorateId",referencedColumnName = "id")
+    private Procuratorate procuratorate;
+
     public Case(String caseName, long happenTime) {
         this.caseName=caseName;
         this.happenTime=happenTime;
+    }
+
+    public Case(@Length(min = 0, max = 255) String caseName, long happenTime, Procuratorate procuratorate) {
+        this.caseName = caseName;
+        this.happenTime = happenTime;
+        this.procuratorate = procuratorate;
     }
 
     public int getId() {
@@ -45,6 +58,22 @@ public class Case implements Serializable{
 
     public void setHappenTime(long happenTime) {
         this.happenTime = happenTime;
+    }
+
+    public Essential getEssential() {
+        return essential;
+    }
+
+    public void setEssential(Essential essential) {
+        this.essential = essential;
+    }
+
+    public Procuratorate getProcuratorate() {
+        return procuratorate;
+    }
+
+    public void setProcuratorate(Procuratorate procuratorate) {
+        this.procuratorate = procuratorate;
     }
 
     @Override
