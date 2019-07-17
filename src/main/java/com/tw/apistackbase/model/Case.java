@@ -14,4 +14,33 @@ public class Case implements Serializable{
 
     @Column(name = "happenTime",nullable=false)
     private long happenTime;
+
+    public Case(String caseName, long happenTime) {
+        this.caseName=caseName;
+        this.happenTime=happenTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCaseName() {
+        return caseName;
+    }
+
+    public void setCaseName(String caseName) {
+        this.caseName = caseName;
+    }
+
+    public long getHappenTime() {
+        return happenTime;
+    }
+
+    public void setHappenTime(long happenTime) {
+        this.happenTime = happenTime;
+    }
 }
