@@ -47,5 +47,13 @@ public class CaseRepositoryTest {
                 "{\"caseName\":\"case2\",\"happenTime\":2,\"id\":2},{\"caseName\":\"case1\"," +
                 "\"happenTime\":1,\"id\":1}]",JSONArray.fromObject(cases).toString());
     }
+    @Test
+    public void should_return_case_by_caseName(){
+        Case actualCase=caseRepository.findByCaseName("case1");
+        Case expectedCase = caseRepository.findAll().get(0);
+        Assert.assertEquals(expectedCase,actualCase);
+    }
+
     
+
 }
