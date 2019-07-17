@@ -14,8 +14,17 @@ public class Procuratorate {
     @Length(min = 0, max = 50)
     private String name;
 
+    @ManyToOne(fetch=FetchType.LAZY,targetEntity = Prosecutor.class)
+    @JoinColumn(name = "procuratorId",referencedColumnName = "id")
+    private Prosecutor prosecutor;
+
     public Procuratorate(String name) {
         this.name=name;
+    }
+
+    public Procuratorate(@Length(min = 0, max = 50) String name, Prosecutor prosecutor) {
+        this.name = name;
+        this.prosecutor = prosecutor;
     }
 
     @Override
@@ -40,5 +49,13 @@ public class Procuratorate {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Prosecutor getProsecutor() {
+        return prosecutor;
+    }
+
+    public void setProsecutor(Prosecutor prosecutor) {
+        this.prosecutor = prosecutor;
     }
 }

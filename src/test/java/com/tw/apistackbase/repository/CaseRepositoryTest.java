@@ -66,6 +66,6 @@ public class CaseRepositoryTest {
     }
     @Test
     public void should_contain_procuratorate_when_request_case(){
-        Assertions.assertNull(caseRepository.findById(4).get().getProcuratorate());
+        Assertions.assertNotNull(caseRepository.findById(5).get().getProcuratorate());
     }
 }
