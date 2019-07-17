@@ -19,6 +19,10 @@ public class Essential implements Serializable {
     @Length(min = 0, max = 255)
     private String secondaryEssential;
 
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "case_id", referencedColumnName = "id")
+    private Case $case;
+
     public int getId() {
         return id;
     }
@@ -43,9 +47,23 @@ public class Essential implements Serializable {
         this.secondaryEssential = secondaryEssential;
     }
 
+    public Case get$case() {
+        return $case;
+    }
+
+    public void set$case(Case $case) {
+        this.$case = $case;
+    }
+
     public Essential(String mainEssential, String secondaryEssential) {
         this.mainEssential=mainEssential;
         this.secondaryEssential=secondaryEssential;
+    }
+
+    public Essential(@Length(min = 0, max = 255) String mainEssential, @Length(min = 0, max = 255) String secondaryEssential, Case $case) {
+        this.mainEssential = mainEssential;
+        this.secondaryEssential = secondaryEssential;
+        this.$case = $case;
     }
 
     @Override

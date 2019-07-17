@@ -1,5 +1,6 @@
 package com.tw.apistackbase.repository;
 
+import com.tw.apistackbase.model.Case;
 import com.tw.apistackbase.model.Essential;
 import org.junit.Assert;
 import org.junit.Before;
@@ -20,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @DataJpaTest
 public class EssentialRepositoryTest {
     @Autowired
+    CaseRepository caseRepository;
+    @Autowired
     EssentialRepository essentialRepository;
 
     @Before
@@ -28,14 +31,20 @@ public class EssentialRepositoryTest {
         essentialList.add(new Essential("mainEssential1","secondaryEssential1"));
         essentialList.add(new Essential("mainEssential2","secondaryEssential2"));
         essentialList.add(new Essential("mainEssential3","secondaryEssential3"));
+        essentialList.add(new Essential("mainEssential4","secondaryEssential4",new Case("case4",4)));
         essentialRepository.saveAll(essentialList);
     }
 
     @Test
-    public void should_return_case_by_essentialId(){
+    public void should_return_essential_by_essentialId(){
         Essential firstEssentia = essentialRepository.findById(1).get();
-        System.out.println(firstEssentia.toString());
         Assert.assertEquals("Essential{id=1, mainEssential='mainEssential1', secondaryEssential='secondaryEssential1'}"
                 ,firstEssentia.toString());
     }
+    @Test
+    public void should_return_case_1_when_essentialId_is_4(){
+        Assert.assertEquals(caseRepository.findById(essentialRepository.findById(4).get().get$case().getId()).get().toString(),
+                essentialRepository.findById(4).get().get$case().toString());
+    }
+
 }
